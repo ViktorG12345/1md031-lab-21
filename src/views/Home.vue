@@ -15,18 +15,30 @@ import Burger from '../components/Burger.vue'
 import io from 'socket.io-client'
 
 const socket = io();
+function MenuItem (burgerName, Kcal, yourURL, glutenboolean, laktosboolean) {
+  this.Name=burgerName;
+  this.Calories=Kcal;
+  this.URL=yourURL;
+  this.gluten=glutenboolean;
+  this.laktos=laktosboolean;
+
+}
+const Burger1 = new MenuItem("FireBurger", 555, "http", "true", "false");
+const Burger2 = new MenuItem("SmokeBurger", 555, "http", "true", "false");
+const Burger3 = new MenuItem("ChickenBurger", 555, "http", "false", "true");
+const hamburgers= { Burger1, Burger2, Burger3 }
+
+console.log(hamburgers)
 
 export default {
   name: 'Home',
   components: {
     Burger
   },
+
   data: function () {
     return {
-      burgers: [ {name: "small burger", kCal: 250},
-                 {name: "standard burger", kCal: 450},
-                 {name: "large burger", kCal: 850}
-               ]
+      burgers:
     }
   },
   methods: {
