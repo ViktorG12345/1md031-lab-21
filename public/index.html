@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="">
   <head>
-
-      <link rel="stylesheet" type="text/css" href="\style.css">
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width,initial-scale=1.0">
-      <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-      <title><%= htmlWebpackPlugin.options.title %></title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
     <noscript>
@@ -17,101 +15,3 @@
     <!-- built files will be auto injected -->
   </body>
 </html>
-<body>
-    <header >
-        <div id="header">
-            <h1 id="rubrik" >Välkommen till BurgerOnline </h1>
-            <img src="https://d3aux7tjp119y2.cloudfront.net/original_images/Tak2-CMSTemplate_IrMZHla.jpg" alt="Span" title="Hamburgaremeny" id="menybild">
-
-        </div>
-    </header>
-    <main>
-
-        <section id="burgerid" >
-
-            <h4>Select a burger</h4>
-            <p>the selection of the burger</p>
-            <div class="burgerclass">
-                <div style="float:left" id="burger1" >
-
-                    <h4>The fire burger</h4>
-                    <img src="https://assets.icanet.se/e_sharpen:80,q_auto,dpr_1.25,w_718,h_718,c_lfill/imagevaultfiles/id_217089/cf_259/smash_burger.jpg" alt="Span" title="Hamburgare" style="width:170px">
-                    <ul>
-
-                        <li>Vegansk</li>
-                        <li>God</li>
-                        <li class="special">Gluten</li>
-                    </ul>
-                </div>
-                <div style="float:left;" id="burger2"  >
-
-                    <h4>The smoky burger</h4>
-                    <img src="https://www.max.se/contentassets/23e325ee1e224f1e9ea8314c346e34c3/product_grilled-chicken-burger.png" alt="Span2" title="Hamburgare2" style="width:180px" >
-                    <ul>
-                        <li>Kyckling</li>
-                        <li class="special">Laktos</li>
-                        <li class="special">Glutenfri</li>
-                    </ul>
-                </div>
-                <div style="float:left;" id="burger3"  >
-
-                    <h4>The hot burger</h4>
-                    <img src="https://cdn3.vectorstock.com/i/1000x1000/03/67/spicy-hamburger-vector-10760367.jpg" alt="Span2" title="Hamburgare2" style="width:145px"  >
-                    <ul>
-                        <li class="special">Gluten</li>
-                        <li>Hot</li>
-                        <li>Meat</li>
-                    </ul>
-                </div>
-            </div>
-
-
-        </section>
-        <section style="clear:left" id="informatiodid" >
-
-            <h4>Customer Information</h4>
-            <p>information about adress mm..</p>
-            <h4>Delivery information:</h4>
-            <p>
-                <label for="firstname">Full name</label><br>
-                <input type="text" id="firstname" name="fn" required="required" placeholder="Full name">
-            </p>
-            <p>
-                <label for="lastname">E-mail</label><br>
-                <input type="email" id="lastname" name="ln" placeholder="E-mail adress">
-            </p>
-            <p>
-                <label for="street">Street</label><br>
-                <input type="text" id="street" name="ef" required="required" placeholder="Street adress">
-            </p>
-            <p>
-                <label for="house">House</label><br>
-                <input type="number" id="house" name="em" required="required" placeholder="House number">
-            </p>
-            <p>
-                <label for="recipien">Betalning</label><be>
-                <select id="recipient" name="rcp" >
-                    <option>Kortbetalning</option>
-                    <option>Swish</option>
-                    <option selected="selected">Klarna</option>
-                    <option>Faktura</option>
-                </select >
-            </p>
-
-            <p>Please select your Gender:</p>
-            <input type="radio" id="html" name="genderbutton" value="Unidentified">
-            <label for="html">man</label><br>
-            <input type="radio" id="css" name="genderbutton" value="Women" checked="checked">
-            <label for="css">female</label><br>
-            <input type="radio" id="javascript" name="genderbutton" value="Man">
-            <label for="javascript">do not wish to provide</label>
-
-        </section>
-        <button type="submit" id="buttonid">
-            <img src="https://media.istockphoto.com/vectors/emoji-thumbs-up-icon-vector-id921715004" width="30px">
-            Slutför beställning
-        </button>
-    </main>
-    <hr>
-    <footer>&copy; Burgers inc.</footer>
-</body>
