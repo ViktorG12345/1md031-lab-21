@@ -1,1 +1,67 @@
 /*empty*/
+/* Your comment goes here */
+@import 'https://fonts.googleapis.com/css?family=Pacifico|Dosis';
+
+body {
+
+}
+
+#burgerid {
+    background-color:gray; margin: 10px 5px 15px 20px;
+    border: 2px dotted #ff9900;
+    padding-left: 10px;
+}
+.burgerclass{
+    background-color:gray;
+    display:grid;
+    grid-template-columns: 200px 200px;
+    font-family: arial;
+
+}
+.special {
+    font-weight: bold;
+}
+#informatiodid {
+    background-color:darkgray;
+    margin: 10px 5px 20px 20px;
+    
+    border: 2px dotted #ff9900;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    font-family: "Times New Roman";
+
+}
+button:hover {
+  
+    background-color:gray;
+}
+#burger1{
+
+    grid-column: 1;
+}
+#burger2{
+
+    grid-column: 2;
+}
+#burger3{
+
+    grid-column: 3;
+}
+#header {
+    margin: 0px 5px 0px 20px;
+
+    height: 150px;
+    overflow:hidden;
+}
+#menybild {
+        opacity: 0.5;
+    width: 100%;
+    height: auto;
+}
+
+#rubrik {
+    position: absolute;
+    padding-left:400px;
+    padding-top: 35px;
+
+}
