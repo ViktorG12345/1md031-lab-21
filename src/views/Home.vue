@@ -1,4 +1,5 @@
 <template>
+
   <body>
   <header >
     <div id="header">
@@ -9,42 +10,14 @@
   </header>
   <main>
 
-    <section id="burgerid" >
+    <section id="burgerid">
+      <div>
+        Burgers
+        <Burger  class="wrapper"
+                v-for="burger in burgers"
 
-      <h4>Select a burger</h4>
-      <p>the selection of the burger</p>
-      <div class="burgerclass">
-        <div style="float:left" id="burger1" >
-
-          <h4>The fire burger</h4>
-          <img src="https://assets.icanet.se/e_sharpen:80,q_auto,dpr_1.25,w_718,h_718,c_lfill/imagevaultfiles/id_217089/cf_259/smash_burger.jpg" alt="Span" title="Hamburgare" style="width:170px">
-          <ul>
-
-            <li>Vegansk</li>
-            <li>God</li>
-            <li class="special">Gluten</li>
-          </ul>
-        </div>
-        <div style="float:left;" id="burger2"  >
-
-          <h4>The smoky burger</h4>
-          <img src="https://www.max.se/contentassets/23e325ee1e224f1e9ea8314c346e34c3/product_grilled-chicken-burger.png" alt="Span2" title="Hamburgare2" style="width:180px" >
-          <ul>
-            <li>Kyckling</li>
-            <li class="special">Laktos</li>
-            <li class="special">Glutenfri</li>
-          </ul>
-        </div>
-        <div style="float:left;" id="burger3"  >
-
-          <h4>The hot burger</h4>
-          <img src="https://cdn3.vectorstock.com/i/1000x1000/03/67/spicy-hamburger-vector-10760367.jpg" alt="Span2" title="Hamburgare2" style="width:145px"  >
-          <ul>
-            <li class="special">Gluten</li>
-            <li>Hot</li>
-            <li>Meat</li>
-          </ul>
-        </div>
+                v-bind:burger="burger"
+                v-bind:key="burger.name"/>
       </div>
 
 
@@ -97,12 +70,9 @@
   </body>
   <hr>
   <footer>&copy; Burgers inc.</footer>
-  <div>
-    Burgers
-    <Burger v-for="burger in burgers"
-            v-bind:burger="burger" 
-            v-bind:key="burger.name"/>
-  </div>
+
+
+
   <div id="map" v-on:click="addOrder">
     click here
   </div>
@@ -113,21 +83,22 @@ import Burger from '../components/Burger.vue'
 import io from 'socket.io-client'
 
 const socket = io();
-function MenuItem (burgerName, calories, yourURL, glutenboolean, laktosboolean) {
-  this.name=burgerName;
-  this.kCal=calories;
-  this.URL=yourURL;
-  this.gluten=glutenboolean;
-  this.laktos=laktosboolean;
+// function MenuItem (burgerName, calories, yourURL, gluteboolean, laktosboolean) {
+//   this.name=burgerName;
+//   this.kCal=calories;
+//   this.img=yourURL;
+//   this.gluten=gluteboolean;
+//   this.lactose=laktosboolean;
 
-}
-const Burger1 = new MenuItem("FireBurger", 555, "http", "true", "false");
-const Burger2 = new MenuItem("SmokeBurger", 555, "http", "true", "false");
-const Burger3 = new MenuItem("ChickenBurger", 555, "http", "false", "true");
-const hamburgers= [ Burger1, Burger2, Burger3 ]
+//}
+//const Burger1 = new MenuItem("FireBurger", 555, "https://assets.icanet.se/e_sharpen:80,q_auto,dpr_1.25,w_718,h_718,c_lfill/imagevaultfiles/id_217089/cf_259/smash_burger.jpg", "true", "false");
+//const Burger2 = new MenuItem("SmokeBurger", 785, "https://patch.com/img/cdn20/users/61455/20210603/125539/styles/patch_image/public/smashburger-classic___03125520204.jpg", "false", "false");
+//const Burger3 = new MenuItem("ChickenBurger", 455, "https://www.max.se/contentassets/23e325ee1e224f1e9ea8314c346e34c3/product_grilled-chicken-burger.png", "true", "true");
+//const hamburgers= [ Burger1, Burger2, Burger3 ]
 
+import menu from '../assets/menu.json'
+const newhamburgers= [menu[2], menu [1], menu[1]]
 
-console.log(hamburgers)
 
 export default {
   name: 'Home',
@@ -137,9 +108,11 @@ export default {
 
   data: function () {
     return {
-      burgers: hamburgers
+      burgers: newhamburgers
     }
   },
+
+
   methods: {
     getOrderNumber: function () {
       return Math.floor(Math.random()*100000);
@@ -161,25 +134,21 @@ export default {
 <style>
 @import 'https://fonts.googleapis.com/css?family=Pacifico|Dosis';
 
-body {
-
-}
 
 #burgerid {
   background-color:gray; margin: 10px 5px 15px 20px;
   border: 2px dotted #ff9900;
   padding-left: 10px;
 }
-.burgerclass{
+.wrapper{
   background-color:gray;
   display:grid;
-  grid-template-columns: 200px 200px;
-  font-family: arial;
+  grid-template-columns: repeat(3, 1fr);
+
 
 }
-.special {
-  font-weight: bold;
-}
+
+
 #informatiodid {
   background-color:darkgray;
   margin: 10px 5px 20px 20px;
@@ -194,18 +163,7 @@ button:hover {
 
   background-color:gray;
 }
-#burger1{
 
-  grid-column: 1;
-}
-#burger2{
-
-  grid-column: 2;
-}
-#burger3{
-
-  grid-column: 3;
-}
 #header {
   margin: 0px 5px 0px 20px;
 
