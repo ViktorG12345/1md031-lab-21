@@ -10,68 +10,67 @@
   </header>
   <main>
 
-    <section id="burgerid">
-      <div>
-        Burgers
-        <Burger  class="wrapper"
-                v-for="burger in burgers"
-
+      <div class="wrapper">
+        <Burger v-for="burger in burgers"
                 v-bind:burger="burger"
-                v-bind:key="burger.name"/>
+                v-bind:key="burger.name"
+                v-on:orderedBurger="addToOrder($event)"
+        />
       </div>
 
 
-    </section>
     <section style="clear:left" id="informatiodid" >
 
       <h4>Customer Information</h4>
       <p>information about adress mm..</p>
       <h4>Delivery information:</h4>
       <p>
-        <label for="firstname">Full name</label><br>
-        <input type="text" id="firstname" name="fn" required="required" placeholder="Full name">
+        <input v-model="förnamn" placeholder="Firstname" required="required" />
+        {{ förnamn }}
       </p>
       <p>
-        <label for="lastname">E-mail</label><br>
-        <input type="email" id="lastname" name="ln" placeholder="E-mail adress">
+        <input v-model="lastname" placeholder="Lastname" required="required" />
+        {{ lastname }}
       </p>
       <p>
-        <label for="street">Street</label><br>
-        <input type="text" id="street" name="ef" required="required" placeholder="Street adress">
+        <input v-model="adress" placeholder="Street Adress" required="required" />
+        {{adress}}
       </p>
       <p>
-        <label for="house">House</label><br>
-        <input type="number" id="house" name="em" required="required" placeholder="House number">
+        <input v-model="nummer" placeholder="House Number" required="required" />
+        {{ nummer }}
       </p>
       <p>
-        <label>Betalning</label>
-        <select id="recipient" name="rcp" >
+        <label>Betalning </label>
+        <select v-model="betalsätt" >
           <option>Kortbetalning</option>
           <option>Swish</option>
-          <option selected="selected">Klarna</option>
+          <option>Klarna</option>
           <option>Faktura</option>
         </select>
       </p>
 
       <p>Please select your Gender:</p>
-      <input type="radio" id="html" name="genderbutton" value="Unidentified">
-      <label for="html">man</label><br>
-        <input type="radio" id="css" name="genderbutton" value="Women" checked="checked">
-        <label for="css">female</label><br>
-        <input type="radio" id="javascript" name="genderbutton" value="Man">
-        <label for="javascript">do not wish to provide</label>
+      <div>
+      <input type="radio" id="one" value="One" v-model="picked" />
+      <label for="one">Man</label>
+      <br />
+      <input type="radio" id="two" value="Two" v-model="picked" />
+      <label for="two">Women</label>
+      <br />
+      <input type="radio" id="three" value="three" v-model="picked" />
+      <label for="three">do not wish to provide</label>
+      <br />
+      </div>
 
     </section>
-    <button type="submit" id="buttonid">
-      <img src="https://media.istockphoto.com/vectors/emoji-thumbs-up-icon-vector-id921715004" width="30px">
-      Slutför beställning
+    <button v-on:click="InformationOrder" type="submit" id="buttonid">
+            Slutför beställning
     </button>
   </main>
   </body>
   <hr>
   <footer>&copy; Burgers inc.</footer>
-
-
 
   <div id="map" v-on:click="addOrder">
     click here
@@ -97,7 +96,7 @@ const socket = io();
 //const hamburgers= [ Burger1, Burger2, Burger3 ]
 
 import menu from '../assets/menu.json'
-const newhamburgers= [menu[2], menu [1], menu[1]]
+const newhamburgers= [menu[0], menu[1], menu[2]]
 
 
 export default {
@@ -113,6 +112,7 @@ export default {
   },
 
 
+
   methods: {
     getOrderNumber: function () {
       return Math.floor(Math.random()*100000);
@@ -126,7 +126,14 @@ export default {
                                 orderItems: ["Beans", "Curry"]
                               }
                  );
-    }
+    },
+
+    InformationOrder:function(){
+      console.log(this.förnamn, this.lastnamn, this.adress, this.nummer, this.betalsätt, this.picked)
+    },
+    addToOrder: function (event) {
+      this.orderedBurgers[event.name] = event.amount;
+    },
   }
 }
 </script>
@@ -141,9 +148,14 @@ export default {
   padding-left: 10px;
 }
 .wrapper{
-  background-color:gray;
-  display:grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: grid;
+  grid-template-row: 1;
+  grid-gap: 10px;
+  padding-left: 10px;
+  grid-template-columns: auto auto auto;
+  background-color: gray;
+  margin: 10px 5px 15px 20px;
+  border: 2px dotted #ff9900;
 
 
 }
