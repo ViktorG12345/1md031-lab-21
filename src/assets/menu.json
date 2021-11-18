@@ -16,7 +16,7 @@
   {
     "name": "ChickenBurger",
     "kCal": 850,
-    "lactose": true,
+    "lactose": false,
     "gluten": false,
     "img": "https://www.max.se/contentassets/23e325ee1e224f1e9ea8314c346e34c3/product_grilled-chicken-burger.png"
   }
