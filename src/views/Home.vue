@@ -7,6 +7,7 @@
       <img src="https://d3aux7tjp119y2.cloudfront.net/original_images/Tak2-CMSTemplate_IrMZHla.jpg" alt="Span" title="Hamburgaremeny" id="menybild">
 
     </div>
+
   </header>
   <main>
 
@@ -32,14 +33,14 @@
         <input v-model="lastname" placeholder="Lastname" required="required" />
         {{ lastname }}
       </p>
-      <p>
-        <input v-model="adress" placeholder="Street Adress" required="required" />
-        {{adress}}
-      </p>
-      <p>
-        <input v-model="nummer" placeholder="House Number" required="required" />
-        {{ nummer }}
-      </p>
+<!--      <p>-->
+<!--        <input v-model="adress" placeholder="Street Adress" required="required" />-->
+<!--        {{adress}}-->
+<!--      </p>-->
+<!--      <p>-->
+<!--        <input v-model="nummer" placeholder="House Number" required="required" />-->
+<!--        {{ nummer }}-->
+<!--      </p>-->
       <p>
         <label>Betalning </label>
         <select v-model="betalsätt" >
@@ -52,14 +53,14 @@
 
       <p>Please select your Gender:</p>
       <div>
-      <input type="radio" id="one" value="One" v-model="picked" />
+      <input type="radio" id="one" value="Man" v-model="picked" />
       <label for="one">Man</label>
       <br />
-      <input type="radio" id="two" value="Two" v-model="picked" />
+      <input type="radio" id="two" value="Women" v-model="picked" />
       <label for="two">Women</label>
       <br />
-      <input type="radio" id="three" value="three" v-model="picked" />
-      <label for="three">do not wish to provide</label>
+      <input type="radio" id="three" value="Do not wish to provide" v-model="picked" />
+      <label for="three">Do not wish to provide</label>
       <br />
       </div>
 
@@ -67,14 +68,24 @@
     <button v-on:click="InformationOrder" type="submit" id="buttonid">
             Slutför beställning
     </button>
+    <div class="wrapper1">
+      <div id="map" v-on:click="addOrder"  >
+        <div v-bind:style="{ left: this.location.x + 'px',
+                      top: this.location.y + 'px' }">
+          T
+        </div>
+
+      </div>
+    </div>
   </main>
+
+
   </body>
   <hr>
   <footer>&copy; Burgers inc.</footer>
 
-  <div id="map" v-on:click="addOrder">
-    click here
-  </div>
+
+
 </template>
 
 <script>
@@ -107,9 +118,13 @@ export default {
 
   data: function () {
     return {
-      burgers: newhamburgers
+      burgers: newhamburgers,
+      location: { x: 0,
+        y: 0
+      }
     }
   },
+
 
 
 
@@ -124,15 +139,19 @@ export default {
                                 details: { x: event.clientX - 10 - offset.x,
                                            y: event.clientY - 10 - offset.y },
                                 orderItems: ["Beans", "Curry"]
-                              }
+                              },
+                              this.location.x=event.clientX + 20 - offset.x ,
+                              this.location.y=event.clientY -5 - offset.y
                  );
+      console.log(event.clientX,event.clientX)
+      console.log(this.location.x, this.location.y)
     },
 
     InformationOrder:function(){
-      console.log(this.förnamn, this.lastnamn, this.adress, this.nummer, this.betalsätt, this.picked)
+      console.log(this.förnamn, this.lastname, this.adress, this.nummer, this.betalsätt, this.picked)
     },
     addToOrder: function (event) {
-      this.orderedBurgers[event.name] = event.amount;
+      console.log(event.name, event.amount)
     },
   }
 }
@@ -179,13 +198,13 @@ button:hover {
 #header {
   margin: 0px 5px 0px 20px;
 
-  height: 150px;
   overflow:hidden;
 }
 #menybild {
   opacity: 0.5;
   width: 100%;
   height: auto;
+  overflow: hidden;
 }
 
 #rubrik {
@@ -195,8 +214,27 @@ button:hover {
 
 }
   #map {
-    width: 300px;
-    height: 300px;
-    background-color: red;
+    width:1920px;
+    height: 1078px;
+
+    background: url(/img/polacks.jpg);
+
+
   }
+  .wrapper1 {
+    height: 300px;
+    width: 300px;
+    padding-left:30px;
+    overflow: scroll;
+    position: relative;
+  }
+#map div {
+  position: absolute;
+  background: black;
+  color: white;
+  border-radius: 10px;
+  width:20px;
+  height:20px;
+  text-align: center;
+}
 </style>

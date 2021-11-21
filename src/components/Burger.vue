@@ -5,6 +5,7 @@
     <h4>{{ burger.name }} {{ burger.kCal }}</h4>
     <img v-bind:src="burger.img" alt="Span2" title="Hamburgare" style="width: 200px;">
     {{ amountOrdered }}
+
     <ul>
       <li class="special">Gluten</li>
       <li>Hot</li>
@@ -40,12 +41,20 @@ export default {
     );
   },
   methods: {
-    IncreaseNumber: function (){
-      this.amountOrdered=this.amountOrdered+1;
-    },
-    DecreaseNumber: function (){
-      this.amountOrdered=this.amountOrdered-1;
-    }
+    IncreaseNumber: function () {
+    this.amountOrdered += 1;
+    this.$emit('orderedBurger', { name:   this.burger.name,
+        amount: this.amountOrdered
+      }
+  );
+},
+    DecreaseNumber:function () {
+    this.amountOrdered -= 1;
+    this.$emit('orderedBurger', { name:   this.burger.name,
+        amount: this.amountOrdered
+      }
+  );
+},
 
   }
 }
