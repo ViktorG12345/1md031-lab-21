@@ -1,8 +1,8 @@
 <template>
 
-  <body>
-  <header >
-    <div id="header">
+  <body >
+  <header id="header">
+    <div >
       <h1 id="rubrik" >Välkommen till BurgerOnline </h1>
       <img src="https://d3aux7tjp119y2.cloudfront.net/original_images/Tak2-CMSTemplate_IrMZHla.jpg" alt="Span" title="Hamburgaremeny" id="menybild">
 
@@ -19,19 +19,17 @@
         />
       </div>
 
-
     <section style="clear:left" id="informatiodid" >
 
       <h4>Customer Information</h4>
-      <p>information about adress mm..</p>
-      <h4>Delivery information:</h4>
+      <p>Please fill in the boxes below</p>
       <p>
-        <input v-model="förnamn" placeholder="Firstname" required="required" />
-        {{ förnamn }}
+        <input v-model="wholename" placeholder="Full name" required="required" />
+        {{ wholename}}
       </p>
       <p>
-        <input v-model="lastname" placeholder="Lastname" required="required" />
-        {{ lastname }}
+        <input v-model="email" placeholder="E-mail adress" required="required" />
+        {{ email }}
       </p>
 <!--      <p>-->
 <!--        <input v-model="adress" placeholder="Street Adress" required="required" />-->
@@ -65,11 +63,10 @@
       </div>
 
     </section>
-    <button v-on:click="InformationOrder" type="submit" id="buttonid">
-            Slutför beställning
-    </button>
+    <h4>Delivery information:</h4>
+    <p>Click on you current delivery location</p>
     <div class="wrapper1">
-      <div id="map" v-on:click="addOrder"  >
+      <div id="map" v-on:click="setLocation" >
         <div v-bind:style="{ left: this.location.x + 'px',
                       top: this.location.y + 'px' }">
           T
@@ -77,6 +74,9 @@
 
       </div>
     </div>
+    <button v-on:click="addOrder" type="submit" id="buttonid">
+            Slutför beställning
+    </button>
   </main>
 
 
@@ -119,39 +119,55 @@ export default {
   data: function () {
     return {
       burgers: newhamburgers,
-      location: { x: 0,
+      orderedBurger: {},
+      location: {
+        x: 0,
         y: 0
-      }
+      },
+      wholename: '',
+      email: '',
+      picked: 'Women',
+      betalsätt: 'Swish',
+
     }
   },
 
 
-
-
   methods: {
     getOrderNumber: function () {
-      return Math.floor(Math.random()*100000);
+      return Math.floor(Math.random() * 100000);
     },
-    addOrder: function (event) {
-      var offset = {x: event.currentTarget.getBoundingClientRect().left,
-                    y: event.currentTarget.getBoundingClientRect().top};
+    addOrder: function() {
       socket.emit("addOrder", { orderId: this.getOrderNumber(),
-                                details: { x: event.clientX - 10 - offset.x,
-                                           y: event.clientY - 10 - offset.y },
-                                orderItems: ["Beans", "Curry"]
-                              },
-                              this.location.x=event.clientX + 20 - offset.x ,
-                              this.location.y=event.clientY -5 - offset.y
-                 );
-      console.log(event.clientX,event.clientX)
-      console.log(this.location.x, this.location.y)
+            details: { x: this.location.x,
+              y: this.location.y,
+
+            },
+        personalInfo: {wm:this.wholename,
+                  em:this.email,
+
+        gend: this.picked,
+        pay: this.betalsätt},
+
+            orderItems: this.orderedBurger
+          }
+      );
+      console.log(this.wholename, this.email, this.betalsätt, this.picked, this.orderedBurger);
     },
 
-    InformationOrder:function(){
-      console.log(this.förnamn, this.lastname, this.adress, this.nummer, this.betalsätt, this.picked)
+    setLocation: function (event) {
+      var offset = {
+        x: event.currentTarget.getBoundingClientRect().left,
+        y: event.currentTarget.getBoundingClientRect().top
+      };
+
+      this.location.x = event.clientX + 20 - offset.x ,
+          this.location.y = event.clientY - 5 - offset.y
+
+
     },
     addToOrder: function (event) {
-      console.log(event.name, event.amount)
+      this.orderedBurger[event.name]=event.amount
     },
   }
 }
@@ -171,9 +187,10 @@ export default {
   grid-template-row: 1;
   grid-gap: 10px;
   padding-left: 10px;
+  padding-bottom: 10px;
   grid-template-columns: auto auto auto;
   background-color: gray;
-  margin: 10px 5px 15px 20px;
+  margin: 5px 5px 5px 20px;
   border: 2px dotted #ff9900;
 
 
@@ -199,6 +216,9 @@ button:hover {
   margin: 0px 5px 0px 20px;
 
   overflow:hidden;
+}
+#header div {
+  height: 200px
 }
 #menybild {
   opacity: 0.5;

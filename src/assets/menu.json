@@ -1,9 +1,9 @@
 [
   {
     "name": "FireBurger",
-    "kCal": 850,
+    "kCal": 1050,
     "lactose": true,
-    "gluten": false,
+    "gluten": true,
     "img": "https://assets.icanet.se/e_sharpen:80,q_auto,dpr_1.25,w_718,h_718,c_lfill/imagevaultfiles/id_217089/cf_259/smash_burger.jpg"
   },
   {
@@ -11,14 +11,14 @@
     "kCal": 850,
     "lactose": true,
     "gluten": false,
-    "img": "https://patch.com/img/cdn20/users/61455/20210603/125539/styles/patch_image/public/smashburger-classic___03125520204.jpg"
+    "img": "https://insanelygoodrecipes.com/wp-content/uploads/2020/10/Hamburger-with-Sesame-Seeds-Cheese-and-Veggies-500x375.png"
   },
   {
     "name": "ChickenBurger",
-    "kCal": 850,
+    "kCal": 650,
     "lactose": false,
     "gluten": false,
-    "img": "https://www.max.se/contentassets/23e325ee1e224f1e9ea8314c346e34c3/product_grilled-chicken-burger.png"
+    "img": "https://www.chicken.ca/wp-content/uploads/2020/09/Moist-Chicken-Burgers.jpg"
   }
 ]
 

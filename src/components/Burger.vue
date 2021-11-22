@@ -2,18 +2,19 @@
 
   <div  id="burger3"  >
 
-    <h4>{{ burger.name }} {{ burger.kCal }}</h4>
-    <img v-bind:src="burger.img" alt="Span2" title="Hamburgare" style="width: 200px;">
-    {{ amountOrdered }}
+    <h4>{{ burger.name }} </h4>
+    <img v-bind:src="burger.img" alt="Span2" title="Hamburgare" id="burgervue">
+
 
     <ul>
-      <li class="special">Gluten</li>
-      <li>Hot</li>
-      <li>Meat</li>
+      <li class="special">Kalorier: {{burger.kCal}}</li>
+      <span v-if="burger.lactose==true"> <li> <span id = "allergies">Contains lactose </span> </li> </span>
+      <span v-if="burger.gluten==true"> <li> <span id = "allergiesgluten">Contains gluten </span> </li> </span>
     </ul>
-    <button v-on:click="IncreaseNumber" type="submit" id="Increase">
+    <button v-on:click="IncreaseNumber" type="submit" id="Increase" style="background: aliceblue">
       Increase
     </button>
+    {{amountOrdered}}
     <button v-on:click="DecreaseNumber" type="submit" id="Decrease">
       Decrease
     </button>
@@ -64,6 +65,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+#burgervue {
+  width: auto;
+  height: 170px;
+}
 
 
 </style>
