@@ -50,6 +50,7 @@ export default {
   );
 },
     DecreaseNumber:function () {
+      if(this.amountOrdered>0)
     this.amountOrdered -= 1;
     this.$emit('orderedBurger', { name:   this.burger.name,
         amount: this.amountOrdered
